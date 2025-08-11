@@ -11,6 +11,16 @@ class _PersonalinfoState extends State<Personalinfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Personal Info',
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 22.0,
+          color: Color(0xFF01226F)
+        ),
+        ),
+        centerTitle: true,
+      ),
     body: SafeArea(
 
        
@@ -20,7 +30,7 @@ class _PersonalinfoState extends State<Personalinfo> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 35.0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50.0),
                     child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScUIAcXgRaNDVvwWAkLcM5twP2KbyCMjPaqg&s",

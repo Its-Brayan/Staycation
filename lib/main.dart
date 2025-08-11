@@ -4,6 +4,7 @@ import 'package:stay/pages/signup.dart';
 import 'package:stay/pages/login.dart';
 import 'package:stay/pages/home.dart';
 import 'package:stay/pages/favourite.dart';
+import 'package:stay/pages/Personalinfo.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         '/signup' :(context)=>Signup(),
         '/profile':(context) =>Profile(),
         '/Home':(context)=>Homepage(),
-        '/favourites':(context) =>Favourite()
+        '/favourites':(context) =>Favourite(),
+        '/personalinfo':(context) => Personalinfo(),
     },
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -91,7 +93,7 @@ class _mainNavigationState extends State<mainNavigation> {
 
         ],
         currentIndex: selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color(0xFF01226F),
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         onTap: onItemTapped,

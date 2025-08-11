@@ -5,6 +5,7 @@ import 'package:stay/pages/login.dart';
 import 'package:stay/pages/home.dart';
 import 'package:stay/pages/favourite.dart';
 import 'package:stay/pages/Personalinfo.dart';
+import 'package:stay/pages/Notification.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/Home':(context)=>Homepage(),
         '/favourites':(context) =>Favourite(),
         '/personalinfo':(context) => Personalinfo(),
+        '/notification':(context) => ManageNotifications(),
     },
       title: 'Flutter Demo',
       theme: ThemeData(

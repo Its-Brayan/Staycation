@@ -75,7 +75,9 @@ class Profile extends StatelessWidget {
                  trailing: Icon(Icons.keyboard_arrow_right,
                    size: 18,),
                  tileColor: Colors.grey.shade50,
-                 onTap: (){},
+                 onTap: (){
+                   Navigator.pushNamed(context, '/notification');
+                 },
                ),
                SizedBox(height: 15),
                ListTile(

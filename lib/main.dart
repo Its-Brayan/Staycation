@@ -6,6 +6,8 @@ import 'package:stay/pages/home.dart';
 import 'package:stay/pages/favourite.dart';
 import 'package:stay/pages/Personalinfo.dart';
 import 'package:stay/pages/Notification.dart';
+import 'package:stay/providers/userProvider.dart';
+import 'package:provider/provider.dart';
 void main() {
   runApp(const MyApp());
 }

@@ -8,11 +8,11 @@ class userprovider with ChangeNotifier{
   bool _isloading = false;
   List<person> get persons => _persons;
   bool get isloading => _isloading;
-  Future<void> loadpersons()async{
+  Future<void> loadpersons(payload)async{
     _isloading = true;
     notifyListeners();
     try {
-      _persons = await _personservice.createperson({});
+      _persons = await _personservice.createperson(payload);
     }catch(error){
       print("error creating person $error");
     }

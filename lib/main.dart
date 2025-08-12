@@ -9,7 +9,13 @@ import 'package:stay/pages/Notification.dart';
 import 'package:stay/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 void main() {
-  runApp(const MyApp());
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_)=>userprovider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

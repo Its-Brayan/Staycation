@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stay/providers/userProvider.dart';
+import'package:stay/models/person.dart';
+
 class Personalinfo extends StatefulWidget {
   const Personalinfo({super.key});
 
@@ -9,6 +11,9 @@ class Personalinfo extends StatefulWidget {
 }
 
 class _PersonalinfoState extends State<Personalinfo> {
+
+
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -24,26 +29,34 @@ class _PersonalinfoState extends State<Personalinfo> {
     _idController.dispose();
     super.dispose();
   }
-  Future<void> _submitForm() async{
-    if(_formKey.currentState!.validate()){
-      final userProvider = Provider.of<userprovider>(context,listen: false);
-      try{
-        final payload = {
-          "fullname":_fullnameController.text,
-          "email":_emailController.text,
-          "phone_number":_phoneController.text,
-          "governmentId":_idController.text,
-        };
-        await userProvider.loadpersons(payload);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Personal info created successfully')),
-        );
-      }catch(error){
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to create personal info ')),
-        );
-      }
+void  _submitForm() async{
+    if(!_formKey.currentState!.validate()) {
+      return;
     }
+
+        final newuser = person(
+          fullname:_fullnameController.text.trim(),
+          email:_emailController.text.trim(),
+          phone_number:_phoneController.text.trim(),
+          governmentId:_idController.text.trim(),
+        );
+  final UserProvider = context.read<userprovider>();
+  await UserProvider.createPerson(newuser);
+  if(UserProvider.error==null){
+  ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(content: Text("Personal Info Created")),
+  );
+  Navigator.pop(context);
+
+  }else{
+    ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(content: Text("Personal Info not Created"),
+  backgroundColor: Colors.red,
+  ),
+  );
+  }
+
+
   }
   @override
   Widget build(BuildContext context) {
@@ -165,18 +178,44 @@ class _PersonalinfoState extends State<Personalinfo> {
 
     ),
       bottomNavigationBar:Padding(padding: EdgeInsets.fromLTRB(16,0, 16, 50),
-      child: ElevatedButton(onPressed: (){
-        _submitForm();
-      }, child:Text("Done",
-      style: TextStyle(color: Color(0xFF01226F)
-      ),
-      ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.grey.shade100,
-        ),
+        child: Consumer<userprovider>(
+          builder: (context, userprovider, child) {
+    return SizedBox(
+    width: double.infinity,
+    child: ElevatedButton(
+    onPressed:userprovider.isloading ?null:_submitForm,
+    style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.grey.shade100,
+    ),
+    child: userprovider.isloading ?
+    Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+    SizedBox(
+    width: 20,
+    height: 20,
+    child: CircularProgressIndicator(
+    strokeWidth: 2,
+    valueColor: AlwaysStoppedAnimation<Color>(
+    Colors.white,
     ),
     ),
-
+    ),
+    SizedBox(width: 12),
+    Text('Creating...'),
+    ],
+    )
+        : Text('Create User'),
+    ),
     );
+
+    })
+            ),
+
+
+        );
+
+
+
   }
 }

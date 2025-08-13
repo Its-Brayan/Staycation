@@ -34,7 +34,7 @@ class personservice{
     Future<person> createPerson(person personal) async{
     try{
       final response = await _client.post(
-        Uri.parse('$baseUrl/personalinfo/'),
+        Uri.parse('$baseUrl/members/personalinfo/'),
         headers: {
           'Content-Type':'application/json',
           'Accept': 'application/json',

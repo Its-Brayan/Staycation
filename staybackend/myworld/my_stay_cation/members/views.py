@@ -4,8 +4,11 @@ from rest_framework import status
 from .serializers import *
 from rest_framework.decorators import api_view
 from .models import  *
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
-api_view(['POST','GET'])
+
+@csrf_exempt
+@api_view(['POST','GET'])
 def createPersonalInfo(request):
     if request.method=="POST":
      serializer = PersonalSerializer(data=request.data)

@@ -1,0 +1,16 @@
+pip~=25.0.1
+attrs~=23.2.0
+distro~=1.9.0
+wheel~=0.42.0
+cryptography~=41.0.7
+pillow~=10.2.0
+Jinja2~=3.1.2
+Django~=4.2.11
+asgiref~=3.7.2
+sqlparse~=0.4.4
+colorama~=0.4.6
+PyYAML~=6.0.1
+requests~=2.31.0
+django-cors-headers~=4.7.0
+Pygments~=2.17.2
+pytz~=2024.1

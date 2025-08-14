@@ -15,8 +15,10 @@ class personservice{
         }
 
       );
+
       if (response.statusCode==200){
         final Map<String,dynamic> personaldata = json.decode(response.body);
+
         return person.fromJson(personaldata);
 
       }
@@ -41,6 +43,7 @@ class personservice{
         },
         body: json.encode(personal.toJson()),
       );
+      print('${response.body}');
     if(response.statusCode==201){
       final Map<String,dynamic> JsonData = json.decode(response.body);
       return person.fromJson(JsonData);

@@ -24,7 +24,7 @@ Map<String,dynamic> toJson(){
    'fullname':fullname,
    'email':email,
    'phone_number':phone_number,
-   'govenmentId':governmentId,
+   'governmentId':governmentId,
  };
 }
 // @override
